@@ -1,7 +1,7 @@
 {
-    "name": "htmltemplate",
+    "name": "huawei",
     "version": "1.0.0",
-    "description": "Start HTML Template",
+    "description": "Huawei Landing Page",
     "main": "index.js",
     "scripts": {
         "stylelint": "stylelint \"app/**/*.scss\" --syntax=scss",

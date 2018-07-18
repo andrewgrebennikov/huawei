@@ -143,21 +143,24 @@ gulp.task('svgsprite', function () {
         .pipe(gulp.dest('build/img'));
 });
 
+let spriteSvgPath = 'app/img/icons';
 gulp.task('html', function () {
-	return gulp.src('app/*.html')
-		.pipe(plumber({
-			errorHandler: function (err) {
-				console.log(err);
-				this.emit('end');
-			}
-		}))
-		.pipe(posthtml([
-			include()
-		]))
-		.pipe(gulp.dest('build'))
-		.pipe(browsersync.reload({
-			stream: true
-		}))
+	if (fileExist(spriteSvgPath) !== false) {
+		return gulp.src('app/*.html')
+			.pipe(plumber({
+				errorHandler: function (err) {
+					console.log(err);
+					this.emit('end');
+				}
+			}))
+			.pipe(posthtml([
+				include()
+			]))
+			.pipe(gulp.dest('build'))
+			.pipe(browsersync.reload({
+				stream: true
+			}))
+	}
 });
 
 gulp.task('imagemin', function () {
