@@ -1,2 +1,2 @@
-# huawei
+# Huawei
 Landing Page Huawei
