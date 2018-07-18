@@ -1,0 +1,6 @@
+@import '_mixins/font-face';
+
+@include font-face('Oswald', '../fonts/OswaldRegular/OswaldRegular');
+@include font-face('Oswald', '../fonts/OswaldMedium/OswaldMedium', 500);
+@include font-face('Arial', '../fonts/ArialRegular/ArialRegular', normal);
+@include font-face('Arial', '../fonts/ArialBold/ArialBold', 600);

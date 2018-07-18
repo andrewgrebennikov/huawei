@@ -1,0 +1,9 @@
+node_modules/
+.idea
+.vscode
+build/*
+.git/
+Thumbs.db
+.DS_Store
+package-lock.json
+bower_components/
