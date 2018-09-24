@@ -19,8 +19,9 @@ var gulp          = require('gulp'),
     uglify        = require('gulp-uglify'),
     rename        = require('gulp-rename'),
     smartgrid     = require('smart-grid'),
-    mode          = require('gulp-mode')();
-    autoprefixer  = require('autoprefixer');
+    mode          = require('gulp-mode')(),
+	autoprefixer  = require('autoprefixer'),
+	fs 			  = require('fs');
 
 gulp.task('smartgrid', function () {
     var settings = {
@@ -140,12 +141,12 @@ gulp.task('svgsprite', function () {
             inlineSvg: true
         }))
         .pipe(rename('sprite.svg'))
-        .pipe(gulp.dest('build/img'));
+        .pipe(gulp.dest('app/img/icons'));
 });
 
 let spriteSvgPath = 'app/img/icons';
 gulp.task('html', function () {
-	if (fileExist(spriteSvgPath) !== false) {
+	if (fs.existsSync(spriteSvgPath)) {
 		return gulp.src('app/*.html')
 			.pipe(plumber({
 				errorHandler: function (err) {
@@ -183,7 +184,9 @@ gulp.task('imagemin', function () {
 			}),
 			imagemin.svgo({
 				plugins: [
-					{removeViewBox: false}
+					{
+						removeViewBox: false
+					}
 				]
 			})
         ])))
@@ -230,13 +233,3 @@ gulp.task('deploy', function () {
     return gulp.src('build/**/*')
         .pipe(ghPages());
 });
-
-function fileExist(filepath) {
-	let flag = true;
-	try {
-		fs.accessSync(filepath, fs.F_OK);
-	} catch(e) {
-		flag = false;
-	}
-	return flag;
-}
